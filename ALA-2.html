@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Showcase Cards</title>
+
+ 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(30, 30, 30, 0.7)),
+        url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+      height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 40px;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px;
+      max-width: 1200px;
+    }
+
+    .card {
+      width: 280px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(80px) scale(0.9);
+      animation: floatCard 6s ease-in-out infinite;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #0ff, 0 0 45px rgba(0, 255, 255, 0.3);
+    }
+
+    @keyframes floatCard {
+      0%, 100% {
+        transform: translateY(0) scale(0.98);
+      }
+      50% {
+        transform: translateY(-10px) scale(1);
+      }
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .card img:hover {
+      animation: shine 1.2s ease;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.1);
+      }
+    }
+
+    .card-content {
+      padding: 16px;
+      z-index: 2;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+ 
+  <div class="card-container">
+    <div class="card">
+      <img src="https://imgs.search.brave.com/WKKKWw8POxO6xauWeiEtWfX4DaL0bVVVaNTo27MJuY8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA0LzM5LzQyLzg2/LzM2MF9GXzQzOTQy/ODY3NF95Qk5xZjNW/dlY0ZDlMbWlBRW52/TmlaTk45QmE0ZDdK/Uy5qcGc" alt="Car 1">
+      <div class="card-content">
+        <h3>BMW M4</h3>
+        <p>High-performance coupe with 473 HP.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://imgs.search.brave.com/NJ_qxaOFQ5JMlxBKZuukzveMfu_x8Nly1dpbr-qiG50/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzkzLzU2LzEw/LzM2MF9GXzc5MzU2/MTAwNF84UXNKQU5j/NXJqQ2ZMTFhEZWV3/ZW5EZ3laaWFXdk9l/ay5qcGc" alt="Car 2">
+      <div class="card-content">
+        <h3>Audi R8</h3>
+        <p>Luxury sports car with a V10 engine.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://imgs.search.brave.com/yNIWCIDhIrS8C6sp0ugv_LDBwkxUcw3UgspF-INTF5E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC9ZZkF2c2JV/LmpwZw" alt="Car 3">
+      <div class="card-content">
+        <h3>Mercedes AMG GT</h3>
+        <p>Track-focused German engineering.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <script>    $(document).ready(function () {
+                    $('.card').each(function (index) {
+        $(this).delay(300 * index).animate({
+          opacity: 1,
+          marginTop: '0px'
+        }, {
+          duration: 1000,
+          step: function (now, fx) {
+            if (fx.prop === 'opacity') {
+              $(this).css('transform', `translateY(${(1 - now) * 80}px) scale(${0.9 + now * 0.1})`);
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
